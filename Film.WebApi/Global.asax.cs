@@ -11,6 +11,7 @@ namespace Film.WebApi
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
+        
         ///<summary>
         ///跨域设置
         ///</summary>

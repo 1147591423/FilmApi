@@ -12,7 +12,7 @@ namespace Film.Model
         public string PhoneNum { get; set; }
         public string Password { get; set; }
         public string UserName { get; set; }
-        public int Sex { get; set; }
+        public int UserSex { get; set; }
         public DateTime UserBirthday { get; set; }
         public string UserImg { get; set; }
     }

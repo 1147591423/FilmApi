@@ -29,13 +29,13 @@ namespace Film.DAL
             }
             return n;
         }
-        public UserInfo UserLogin(string Num,string Password)
+        public string UserLogin(string Num,string Password)
         {
             try
             {
                 string sql = "select * from UserInfo where PhoneNum = @PhoneNum and [Password] = @Password";
-                var result = db.Query<UserInfo>(sql, new { @PhoneNum = Num, @Password = Password }).FirstOrDefault();
-                return result;
+                var result = db.Query<UserInfo>(sql, new { @PhoneNum = Num, @Password = GetMd5(Password) }).FirstOrDefault();
+                return result.ToString();
             }
             catch 
             {
@@ -48,13 +48,27 @@ namespace Film.DAL
             try
             {
                 string sql = "insert into UserInfo values(@PhoneNum ,@Password ,@UserName ,@UserSex ,@UserBirthday ,@UserImg )";
-                var result = db.Execute(sql, new { @PhoneNum = ui.PhoneNum, @Password = GetMd5(ui.Password), @UserName = "", @UserSex = 0, @UserBirthday = "", @UserImg = "" });
+                var result = db.Execute(sql, new { @PhoneNum = ui.PhoneNum, @Password = GetMd5(ui.Password), @UserName = ui.PhoneNum, @UserSex = 0, @UserBirthday = "", @UserImg = "" });
                 return result;
             }
             catch
             {
                 return 0;
             }           
+        }
+        public int EditUserPwd(string phoneNum,string passWord)
+        {
+            try
+            {
+                string sql = "update UserInfo set Password = @Password where PhoneNum = @phoneNum";
+                var resule = db.Execute(sql, new { @Password = GetMd5(passWord), @phoneNum = phoneNum });
+                return resule;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
     }

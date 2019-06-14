@@ -23,8 +23,8 @@ namespace Film.DAL
         }
         public List<FilmInfo> SearchFilm(string AName)
         {
-            string sql = "select * from FilmInfo where ";
-            var list = db.Query<FilmInfo>(sql).ToList();
+            string sql = "select * from FilmInfo where FilmCName like '%'+@FilmCName+'%' ";
+            var list = db.Query<FilmInfo>(sql,new { @FilmCName=AName}).ToList();
             return list;
         }
         public List<FilmInfo> FilmOrderByOffice()
