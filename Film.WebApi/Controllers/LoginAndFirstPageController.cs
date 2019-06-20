@@ -16,6 +16,12 @@ namespace Film.WebApi.Controllers
         Login lg = new Login();
         FirstPage fp = new FirstPage();
         AllUserInfo ai = new AllUserInfo();
+        /// <summary>
+        /// 登陆
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="passWord"></param>
+        /// <returns></returns>
         [HttpGet]
         public string UserLogin(string userName, string passWord)
         {
@@ -23,10 +29,10 @@ namespace Film.WebApi.Controllers
             {
                 if (userName == null || passWord == null)
                 {
-                    Log.FileLogService.Instance.Info($"空数据");
+                    Log.FileLogService.Instance.Info("空数据");
                     return "null";
                 }
-                Log.FileLogService.Instance.Info($"用户名{userName}");
+                Log.FileLogService.Instance.Info($"用户登录.用户名{userName}");
                 return lg.UserLogin(userName, passWord);
             }
             catch (Exception)
@@ -36,6 +42,10 @@ namespace Film.WebApi.Controllers
             }
 
         }
+        /// <summary>
+        /// 获取所有电影
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public List<FilmInfo> GetFilm()
         {
@@ -50,13 +60,18 @@ namespace Film.WebApi.Controllers
             }
 
         }
+        /// <summary>
+        /// 用户注册
+        /// </summary>
+        /// <param name="ui"></param>
+        /// <returns></returns>
         [HttpPost]
         public int RegisterUser(string ui)
         {
             try
             {
                 UserInfo model = JsonConvert.DeserializeObject<UserInfo>(ui);
-                Log.FileLogService.Instance.Info($"用户手机号{model.PhoneNum}");
+                Log.FileLogService.Instance.Info($"用户注册.用户手机号{model.PhoneNum}");
                 return lg.RegisterUser(model);
             }
             catch (Exception)
@@ -66,6 +81,10 @@ namespace Film.WebApi.Controllers
             }
 
         }
+        /// <summary>
+        /// 票房排序
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public List<FilmInfo> FilmOrderByOffice()
         {
@@ -80,17 +99,27 @@ namespace Film.WebApi.Controllers
             }
 
         }
+        /// <summary>
+        /// 评分排序
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public List<FilmInfo> FilmOrderByGradee()
         {
             return fp.FilmOrderByGradee();
         }
+        /// <summary>
+        /// 修改没密码
+        /// </summary>
+        /// <param name="phoneNum"></param>
+        /// <param name="passWord"></param>
+        /// <returns></returns>
         [HttpPut]
         public int EditUserPwd(string phoneNum, string passWord)
         {
             try
             {
-                Log.FileLogService.Instance.Info($"用户手机号{phoneNum}");
+                Log.FileLogService.Instance.Info($"修改密码.用户手机号{phoneNum}");
                 return lg.EditUserPwd(phoneNum, passWord);
             }
             catch (Exception)
@@ -100,7 +129,13 @@ namespace Film.WebApi.Controllers
             }
 
         }
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="AName"></param>
+        /// <returns></returns>
         [HttpGet]
+        
         public List<FilmInfo> SearchFilm(string AName)
         {
             return fp.SearchFilm(AName);
@@ -110,10 +145,26 @@ namespace Film.WebApi.Controllers
         {
             return ai.BackDataByPhoneNum(phoneNum);
         }
+        /// <summary>
+        /// /修改用户信息
+        /// </summary>
+        /// <param name="ui"></param>
+        /// <returns></returns>
         [HttpPut]
-        public int EditUserInfo(UserInfo ui)
+        public int EditUserInfo(string ui)
         {
-            return ai.EditUserInfo(ui);
+            try
+            {
+                var result = JsonConvert.DeserializeObject<UserInfo>(ui);
+                Log.FileLogService.Instance.Info($"修改信息.用户手机号{result.PhoneNum}");
+                return ai.EditUserInfo(result);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
     }
 }
