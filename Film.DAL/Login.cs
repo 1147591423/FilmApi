@@ -46,6 +46,7 @@ namespace Film.DAL
         public int RegisterUser(UserInfo ui)
         {
             try
+
             {
                 string sql = "insert into UserInfo values(@PhoneNum ,@Password ,@UserName ,@UserSex ,@UserBirthday ,@UserImg )";
                 var result = db.Execute(sql, new { @PhoneNum = ui.PhoneNum, @Password = GetMd5(ui.Password), @UserName = ui.PhoneNum, @UserSex = 0, @UserBirthday = "", @UserImg = "" });
