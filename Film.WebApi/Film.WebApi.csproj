@@ -157,6 +157,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BangDanController.cs" />
     <Compile Include="Controllers\CinemaController.cs" />
+    <Compile Include="Controllers\DetailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginAndFirstPageController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

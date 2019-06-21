@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CinemaDAL.cs" />
+    <Compile Include="Details.cs" />
     <Compile Include="FilmDal.cs" />
     <Compile Include="FirstPage.cs" />
     <Compile Include="Login.cs" />

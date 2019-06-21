@@ -8,6 +8,7 @@ namespace Film.Model
 {
     public class CinemaList
     {
+        public int CId { get; set; }
         //影城名字
         public string Lname { get; set; }
         //影城所在地址
@@ -18,6 +19,9 @@ namespace Film.Model
         public int Lpid { get; set; }
         //价钱
         public int Lfares { get; set; }
-
+        //电话
+        public string LPhone { get; set; }
+        //影院图片
+        public string LImg { get; set; }
     }
 }
