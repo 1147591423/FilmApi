@@ -47,6 +47,7 @@
     <Compile Include="ActorInfo.cs" />
     <Compile Include="ChCinema.cs" />
     <Compile Include="CinemaList.cs" />
+    <Compile Include="CinemaWithFilm.cs" />
     <Compile Include="district.cs" />
     <Compile Include="FilmInfo.cs" />
     <Compile Include="MovieActors.cs" />
