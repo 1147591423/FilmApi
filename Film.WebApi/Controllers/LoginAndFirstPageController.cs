@@ -51,6 +51,7 @@ namespace Film.WebApi.Controllers
         {
             try
             {
+
                 return fp.GetFilm();
             }
             catch (Exception)
